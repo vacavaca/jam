@@ -1,0 +1,20 @@
+{
+  "name": "@jam/api",
+  "version": "0.0.1",
+  "exports": "./mod.ts",
+  "tasks": {
+    "dev": "deno run --env-file=.env.local -A main.ts",
+    "prod": "deno run --env-file=.env -A main.ts",
+    "version": "deno eval \"import p from './deno.json' with {type: 'json' }; console.log(p.version)\""
+  },
+  "imports": {
+    "@supabase/supabase-js": "npm:@supabase/supabase-js@^2.45.6",
+    "@types/express": "npm:@types/express@^4.17.21",
+    "@types/express-fileupload": "npm:@types/express-fileupload@^1.5.1",
+    "@types/pg": "npm:@types/pg@^8.11.10",
+    "express": "npm:express@^4.21.1",
+    "express-fileupload": "npm:express-fileupload@^1.5.1",
+    "pg": "npm:pg@^8.13.1",
+    "zod": "npm:zod@^3.23.8"
+  }
+}

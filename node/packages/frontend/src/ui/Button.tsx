@@ -1,0 +1,65 @@
+import clsx from "clsx"
+import { PropsWithChildren, ReactNode } from "react"
+
+type Props = {
+    isDisabled?: boolean
+    isLoading?: boolean
+    isSuccess?: boolean
+    success?: ReactNode
+    onClick?: () => unknown
+} & PropsWithChildren
+
+export function Button({ isLoading, isSuccess, success, onClick, isDisabled, children }: Props) {
+    return (
+        <button
+            className={clsx(
+                "rounded-3xl relative p-5 w-full block px-4 text-white transition-colors",
+                {
+                    "bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700": !isLoading && !isSuccess && !isDisabled,
+                    "bg-indigo-600 cursor-default": isLoading && !isDisabled,
+                    "bg-green-500 hover:bg-green-500 cursor-default":
+                        !isLoading && isSuccess && !isDisabled,
+                    "bg-neutral-400 cursor-default": isDisabled,
+                }
+            )}
+            onClick={!isLoading && !isSuccess && !isDisabled ? onClick : undefined}
+        >
+            <span
+                className={clsx("transition-opacity duration-500", {
+                    "opacity-100": !isLoading,
+                    "opacity-0": isLoading,
+                })}
+            >
+                {!isSuccess ? children : null}
+                {isSuccess ? (success ?? <Success />) : null}
+            </span>
+            <div
+                className={clsx(
+                    "absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transition-opacity duration-500",
+                    {
+                        "opacity-0": !isLoading,
+                        "opacity-1000": isLoading,
+                    }
+                )}
+            >
+                <div className="loader " />
+            </div>
+        </button>
+    )
+}
+
+function Success() {
+    return (
+        <>
+            &nbsp;
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-8 h-8 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+            >
+                <path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path>
+            </svg>
+        </>
+    )
+}

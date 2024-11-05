@@ -1,0 +1,14 @@
+{
+    "name": "@jam/common",
+    "version": "0.0.0",
+    "exports": {
+        "./async": "./src/async/index.ts",
+        "./stream": "./src/stream/index.ts",
+        "./event": "./src/event.ts",
+        "./subscription": "./src/subscription.ts",
+        "./util": "./src/util.ts",
+        "./num": "./src/num.ts",
+        "./compare": "./src/compare.ts",
+        "./log": "./src/log.ts",
+    }
+}

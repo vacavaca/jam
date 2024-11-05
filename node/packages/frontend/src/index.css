@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font-size: 16px;
+    @apply bg-indigo-100;
+    @apply bg-opacity-20;
+    @apply text-neutral-900;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+}
+
+/* HTML: <div class="loader"></div> */
+.loader {
+  width: 16px;
+  aspect-ratio: 1;
+  animation: 
+    l3-1 2s infinite linear,
+    l3-2 3s infinite steps(1) -.5s;
+}
+@keyframes l3-1 {
+  0%   {transform: perspective(150px) rotateX(  0deg) rotateY(0deg)}
+  50%  {transform: perspective(150px) rotateX(180deg) rotateY(0deg)}
+  100% {transform: perspective(150px) rotateX(180deg) rotateY(180deg)}
+}
+@keyframes l3-2 {
+  0%  {background: #fff}
+  33% {background: #fff}
+  66% {background: #fff}
+/*
+  0%  {background: #ffa516}
+  33% {background: #f03355}
+  66% {background: #25b09b}
+*/
+}

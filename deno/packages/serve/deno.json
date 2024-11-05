@@ -1,0 +1,17 @@
+{
+  "name": "@jam/serve",
+  "version": "0.0.1",
+  "exports": "./mod.ts",
+  "tasks": {
+    "version": "deno eval \"import p from './deno.json' with {type: 'json' }; console.log(p.version)\""
+  },
+  "imports": {
+    "@types/express": "npm:@types/express@^4.17.21",
+    "body-parser": "npm:body-parser@^1.20.3",
+    "express": "npm:express@^4.21.1",
+    "helmet": "npm:helmet@^8.0.0",
+    "secure-json-parse": "npm:secure-json-parse@^2.7.0",
+    "zod": "npm:zod@^3.23.8",
+    "zod-validation-error": "npm:zod-validation-error@^3.4.0"
+  }
+}
