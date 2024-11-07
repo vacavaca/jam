@@ -97,7 +97,7 @@ export function CandidateSearchCard({
                     <p>{summary}</p>
                     <div className="bg-gradient-to-t from-[#f6f8ff] via-[#f6f8ff] absolute left-0 right-0 -bottom-1/2 top-1/2 z-20 pointer-events-none" />
                 </div>
-                <Link ref={linkRef} className="w-full" to={`/cv/${resumeId}`}>
+                <Link ref={linkRef} className="w-full -mt-1" to={`/cv/${resumeId}`}>
                     <Button className="font-semibold">Full CV</Button>
                 </Link>
             </div>

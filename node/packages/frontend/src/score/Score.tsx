@@ -11,7 +11,7 @@ export type Props = {
 }
 
 export function Score({ label, percent: percentArg, isHighlighted, className }: Props) {
-    if (!percentArg) {
+    if (percentArg === undefined) {
         return null
     }
 

@@ -2,7 +2,7 @@ import { request } from "@/api/request";
 import useSWR from "swr";
 
 export function useResumes() {
-    return useSWR('listResumes', () => request<ResponseListResume[]>(`/cv/list`))
+    return useSWR('listResumes', () => request<ResponseListResume[]>(`/cv/list?v=${Date.now()}`))
 }
 
 type ResponseListResume = {
@@ -12,7 +12,7 @@ type ResponseListResume = {
 }
 
 export function useResume(id: string | number) {
-    return useSWR(['getResume', id], () => request<ResponseResume | null>(`/cv/${id}`))
+    return useSWR(['getResume', id], () => request<ResponseResume | null>(`/cv/${id}?v=${Date.now()}`))
 }
 
 export interface ResponseResume {

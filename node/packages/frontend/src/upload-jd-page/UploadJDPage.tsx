@@ -23,7 +23,9 @@ export function UploadJDPage() {
             return
         }
 
-        router.push(`/jd/${state.id}`)
+        setTimeout(() => {
+            router.push(`/jd/${state.id}`)
+        }, 4000)
     }, [state, router])
 
     return (
@@ -31,5 +33,5 @@ export function UploadJDPage() {
             {state.step === "upload" && <UploadStep onDone={onJdUploaded} />}
             {state.step === "decode" && <DecodeStep id={state.id} onDone={onJdDecoded} />}
         </>
-    ) 
+    )
 }

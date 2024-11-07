@@ -3,7 +3,7 @@ import { request } from "../api/request"
 
 export function useVacanciesSearch(cvId: string | number) {
     return useSWR(["vacancySearch", cvId], async () =>
-        request<ResponseCandidate[]>(`/search/by-cv/${cvId}`)
+        request<ResponseCandidate[]>(`/search/by-cv/${cvId}?v=${Date.now()}`)
     )
 }
 

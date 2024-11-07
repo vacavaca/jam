@@ -15,6 +15,7 @@ import { SparkIcon } from "@/icon/SparkIcon"
 import { Link } from "@/router/Link"
 import { useAuth } from "@/auth/context"
 import { ChatSmileIcon } from "@/icon/ChatSmileIcon"
+import { EarthIcon } from "@/icon/EarthIcon"
 
 export type Props = {}
 
@@ -67,15 +68,23 @@ export function ResumePage() {
                     <div className="bg-indigo-50 py-4 px-8 rounded-2xl mx-1">
                         <div className="flex flex-row items-center flex-wrap gap-x-2 gap-y-2 text-indigo-500 relative -ml-3">
                             {resume.positions && (
-                                <div className="text-lg font-bold text-indigo-500 mr-2">
+                                <div className="text-xl font-bold text-indigo-500 ml-2 mr-2 mb-2 mt-1">
                                     {resume.positions.join(", ")}
                                 </div>
                             )}
-                            {resume.location && (
+                            {resume.location?.countryName && (
                                 <Chip color="white" icon={LocationIcon}>
                                     {resume.location.city}
                                 </Chip>
                             )}
+                            {(resume.languages ?? []).map((v) => (
+                                <Chip key={v.language} color="white" icon={EarthIcon}>
+                                    {v.language.at(0)?.toUpperCase() + v.language.slice(1)}{" "}
+                                    {!["jd", "cv"].includes(v.level) && (
+                                        <span className="opacity-60">{v.level.at(0)?.toUpperCase() + v.level.slice(1)}</span>
+                                    )}
+                                </Chip>
+                            ))}
                         </div>
                     </div>
                 </div>
@@ -230,7 +239,7 @@ export function ResumePage() {
                         <Link className="grow font-semibold" to={`/search/by-cv/${cvId}`}>
                             <Button className="">
                                 <SparkIcon className="w-7 h-7 inline relative -top-0.5 mr-2" />
-                                Find job
+                                Find a job
                             </Button>
                         </Link>
                     )}

@@ -2,11 +2,11 @@ import { request } from "@/api/request"
 import useSWR from "swr"
 
 export function useVacancies() {
-    return useSWR("listVacancies", () => request<ResponseListVacancy[]>("/jd/list"))
+    return useSWR("listVacancies", () => request<ResponseListVacancy[]>(`/jd/list?v=${Date.now()}`))
 }
 
 export function useVacancy(id: string | number) {
-    return useSWR(["getVacancy", id], () => request<ResponseVacancy | null>(`/jd/${id}`))
+    return useSWR(["getVacancy", id], () => request<ResponseVacancy | null>(`/jd/${id}?v=${Date.now()}`))
 }
 
 type ResponseListVacancy = {

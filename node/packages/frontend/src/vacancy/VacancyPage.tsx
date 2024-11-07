@@ -21,6 +21,7 @@ import { CyanButton } from "@/ui/CyanButton"
 import { formatNumberStringWithDelimiter } from "@/common/num"
 import { BackIcon } from "@/icon/BackIcon"
 import { BackLink } from "@/router/BackLink"
+import { EarthIcon } from "@/icon/EarthIcon"
 
 export type Props = {}
 
@@ -87,18 +88,20 @@ export function VacancyPage() {
                                     }[vacancy.terms.timeCondition]
                                 }
                             </Chip>
-                            <Chip color="white" icon={BuildingIcon}>
-                                {vacancy.terms.isRemoteAllowed &&
-                                    vacancy.terms.isOnSiteAllowed &&
-                                    "Flexible"}
-                                {!vacancy.terms.isRemoteAllowed &&
-                                    vacancy.terms.isOnSiteAllowed &&
-                                    "Onsite"}
-                                {vacancy.terms.isRemoteAllowed &&
-                                    !vacancy.terms.isOnSiteAllowed &&
-                                    "Remote"}
-                            </Chip>
-                            {vacancy.location &&
+                            {(vacancy.terms.isRemoteAllowed || vacancy.terms.isOnSiteAllowed) && (
+                                <Chip color="white" icon={BuildingIcon}>
+                                    {vacancy.terms.isRemoteAllowed &&
+                                        vacancy.terms.isOnSiteAllowed &&
+                                        "Flexible"}
+                                    {!vacancy.terms.isRemoteAllowed &&
+                                        vacancy.terms.isOnSiteAllowed &&
+                                        "Onsite"}
+                                    {vacancy.terms.isRemoteAllowed &&
+                                        !vacancy.terms.isOnSiteAllowed &&
+                                        "Remote"}
+                                </Chip>
+                            )}
+                            {vacancy.location?.countryName &&
                                 !(
                                     vacancy.terms.isRemoteAllowed && !vacancy.terms.isOnSiteAllowed
                                 ) && (
@@ -106,6 +109,11 @@ export function VacancyPage() {
                                         {vacancy.location.city}
                                     </Chip>
                                 )}
+                            {vacancy.languages.map(v => (
+                                <Chip key={v.language} color="white" icon={EarthIcon}>
+                                    {v.language.at(0)?.toUpperCase() + v.language.slice(1)} {!['jd', 'cv'].includes(v.level) && <span className="opacity-60">{v.level}</span>}
+                                </Chip>
+                            ))}
                         </div>
                     </div>
                 </div>
@@ -204,11 +212,10 @@ export function VacancyPage() {
                                         <div>
                                             <div>Refer a friend</div>
                                             <div className="text-teal-800 -mt-1 font-normal group-hover:text-teal-600 transition">
-                                                +
                                                 {formatNumberStringWithDelimiter(
-                                                    `${(+vacancy.id % 4) * 500 + 1000}`
+                                                    `${((+vacancy.id % 4) * 100 + 200) / 5}`
                                                 )}{" "}
-                                                $
+                                                TON
                                             </div>
                                         </div>
                                     </div>

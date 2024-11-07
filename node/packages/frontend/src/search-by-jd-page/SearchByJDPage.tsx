@@ -26,14 +26,19 @@ export function SearchByJDPage() {
                         <SelectContent>
                             {(vacancies ?? []).map((v) => (
                                 <SelectItem key={v.id} value={`${v.id}`}>
-                                    {v.positions.at(0)} {v.companyName}
+                                    {v.companyName} - {v.positions.at(0)}
                                 </SelectItem>
                             ))}
                         </SelectContent>
                     </Select>
                 </div>
             </HeaderPortal>
-            {!data && <Preloader className="mt-40" />}
+            {!data && <Preloader className="mt-40 mb-40" />}
+            {data?.length === 0 && (
+                <div className="text-indigo-500 text-center">
+                    <p>No matching candidates found</p>
+                </div>
+            )}
             {data?.map((v, i) => (
                 <CandidateSearchCard
                     isOpen={open === i}
