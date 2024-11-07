@@ -7,7 +7,11 @@ import fileUpload from "npm:express-fileupload"
 import type { UploadedFile } from "npm:express-fileupload"
 import { join } from "node:path"
 import { supabase } from "./src/supabase.ts"
-import { prepareSearchPageForJob } from "./src/search.ts"
+import { prepareSearchPageForJob, prepareSearchPageForResume } from "./src/search.ts"
+import { listJDs } from "./src/jd/list.ts"
+import { listCVs } from "./src/cv/list.ts"
+import { getJd } from "./src/jd/get.ts"
+import { getCv } from "./src/cv/get.ts"
 
 const logger = createLogger("api-server")
 
@@ -31,6 +35,27 @@ serve(
                 files: 1,
             },
         }))
+
+        .get('/jd/list', asyncRoute(async (_, res) => {
+            const jds = await listJDs()
+            res.status(200).json(jds)
+        }))
+
+        .get('/cv/list', asyncRoute(async (_, res) => {
+            const jds = await listCVs()
+            res.status(200).json(jds)
+        }))
+
+        .get('/jd/:jd', asyncRoute(async (req, res) => {
+            const jd = await getJd(req.params.jd)
+            res.status(200).json(jd)
+        }))
+
+        .get('/cv/:jd', asyncRoute(async (req, res) => {
+            const jd = await getCv(req.params.jd)
+            res.status(200).json(jd)
+        }))
+
         .post(
             "/upload/jd",
             asyncRoute(async (req, res) => {
@@ -109,6 +134,7 @@ serve(
                 res.status(200).json({ id })
             }),
         )
+
         .get("/search/by-jd/:jd", asyncRoute(async (req, res) => {
             const jdId = +req.params.jd
             if (isNaN(jdId)) {
@@ -116,6 +142,17 @@ serve(
             }
 
             const data  =await prepareSearchPageForJob(jdId)
+
+            res.status(200).json(data)
+        }))
+
+        .get("/search/by-cv/:cv", asyncRoute(async (req, res) => {
+            const cvId = +req.params.cv
+            if (isNaN(cvId)) {
+                throw new ErrorInvalidRequest("cv id is required")
+            }
+
+            const data  =await prepareSearchPageForResume(cvId)
 
             res.status(200).json(data)
         }))

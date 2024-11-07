@@ -39,7 +39,7 @@ export function UploadStep({ onDone }: Props) {
     return (
         <>
             <H1 className="mb-8 text-center">Upload your Job Description</H1>
-            <p className="text-lg mb-16 text-center text-neutral-800">
+            <p className="text-lg mb-16 text-center">
                 To get the best matches for your position
             </p>
             <FileInput

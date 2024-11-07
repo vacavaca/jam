@@ -11,6 +11,7 @@ export function RouterProvider({ children }: PropsWithChildren) {
 
     const onPush = useCallback(
         (path: string) => {
+
             let resolved = path
             if (!path.startsWith("/")) {
                 resolved = window.location.pathname
@@ -19,8 +20,12 @@ export function RouterProvider({ children }: PropsWithChildren) {
                 }
                 resolved += `/${path}`
             }
+
+            let routerPath = resolved.replace(/\?.+$/, '')
+            routerPath = routerPath.replace(/#.+$/, '')
+
             history.pushState({}, "", resolved)
-            store.set.call(undefined, updatePath(resolved))
+            store.set.call(undefined, updatePath(routerPath))
         },
         [store.set]
     )

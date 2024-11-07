@@ -14,7 +14,7 @@ type State =
 
 export function UploadJDPage() {
     const router = useRouter()
-    const [state, setState] = useState<State>({ step: "decode", id: 2 })
+    const [state, setState] = useState<State>({ step: "upload" })
 
     const onJdUploaded = useCallback((id: number) => setState({ step: "decode", id }), [])
 
@@ -23,7 +23,7 @@ export function UploadJDPage() {
             return
         }
 
-        router.push(`/search/by-jd/${state.id}`)
+        router.push(`/jd/${state.id}`)
     }, [state, router])
 
     return (

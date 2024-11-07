@@ -3,15 +3,13 @@ import { headerContainerContext } from "./state"
 import { Header } from "./Header"
 
 export function HeaderLayout({ children }: PropsWithChildren) {
-    const [container, setContainer] = useState<HTMLElement | null>(null)
+    const [headerContainer, setHeaderContainer] = useState<HTMLElement | null>(null)
 
     return (
-        <headerContainerContext.Provider value={container}>
-            <div className="flex flex-col items-center justify-start h-full">
-                <div className="w-full max-w-[34rem] relative h-full">
-                    <Header onContainer={setContainer} />
-                    <div className="overflow-y-auto mt-20 h-[calc(100%-5rem)] relative z-10">{children}</div>
-                </div>
+        <headerContainerContext.Provider value={headerContainer}>
+            <div className="w-full max-w-[34rem] relative h-screen flex flex-col justify-stretch items-stretch mx-auto">
+                <Header onContainer={setHeaderContainer} />
+                <div className="overflow-y-auto relative z-10">{children}</div>
             </div>
         </headerContainerContext.Provider>
     )

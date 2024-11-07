@@ -39,7 +39,7 @@ export function UploadStep({ onDone }: Props) {
     return (
         <>
             <H1 className="mb-8 text-center">Upload your CV</H1>
-            <p className="text-lg mb-16 text-center text-neutral-800">
+            <p className="text-lg mb-16 text-center">
                 To get the best matches for your skills
             </p>
             <FileInput

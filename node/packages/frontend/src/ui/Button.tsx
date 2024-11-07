@@ -1,26 +1,40 @@
 import clsx from "clsx"
 import { PropsWithChildren, ReactNode } from "react"
+import { twMerge } from "tailwind-merge"
 
 type Props = {
     isDisabled?: boolean
     isLoading?: boolean
     isSuccess?: boolean
     success?: ReactNode
+    className?: string
     onClick?: () => unknown
 } & PropsWithChildren
 
-export function Button({ isLoading, isSuccess, success, onClick, isDisabled, children }: Props) {
+export function Button({
+    isLoading,
+    isSuccess,
+    success,
+    onClick,
+    isDisabled,
+    children,
+    className,
+}: Props) {
     return (
         <button
-            className={clsx(
-                "rounded-3xl relative p-5 w-full block px-4 text-white transition-colors",
-                {
-                    "bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700": !isLoading && !isSuccess && !isDisabled,
-                    "bg-indigo-600 cursor-default": isLoading && !isDisabled,
-                    "bg-green-500 hover:bg-green-500 cursor-default":
-                        !isLoading && isSuccess && !isDisabled,
-                    "bg-neutral-400 cursor-default": isDisabled,
-                }
+            className={twMerge(
+                clsx(
+                    "rounded-3xl relative p-5 w-full block px-4 text-white transition-colors whitespace-nowrap",
+                    {
+                        "bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700":
+                            !isLoading && !isSuccess && !isDisabled,
+                        "bg-indigo-600 cursor-default": isLoading && !isDisabled,
+                        "bg-green-400 hover:bg-green-400 cursor-default":
+                            !isLoading && isSuccess && !isDisabled,
+                        "bg-neutral-400 cursor-default": isDisabled,
+                    },
+                    className
+                )
             )}
             onClick={!isLoading && !isSuccess && !isDisabled ? onClick : undefined}
         >

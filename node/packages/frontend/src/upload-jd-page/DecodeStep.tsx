@@ -22,17 +22,19 @@ export function DecodeStep({ id, onDone }: Props) {
                         .eq("id", id)
                         .throwOnError()
 
-                    if (result.data![0].status === "processed") {
-                        setReady(true)
-                        if (onDone) {
-                            onDone()
-                        }
+                    if (result.data![0].status !== "processed") {
+                        return
+                    }
+
+                    setReady(true)
+                    if (onDone) {
+                        onDone()
                     }
                 } catch (error) {
                     console.log(error)
                 }
             }),
-        11000,
+        1000,
         [id, isReady, onDone]
     )
 

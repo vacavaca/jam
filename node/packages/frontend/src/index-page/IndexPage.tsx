@@ -1,12 +1,44 @@
-import { PropsWithChildren } from "react"
+import { MouseEventHandler, PropsWithChildren, useCallback, useMemo } from "react"
 import { H2 } from "../ui/heading"
-import { Link } from "../router/Link"
 import clsx from "clsx"
+import { useRouter } from "@/router/state"
+import { AuthState, useAuth } from "@/auth/context"
+import { updateAction } from "@/util/store"
+import { Logo } from "@/icon/Logo"
 
 export function IndexPage() {
+    const router = useRouter()
+    const auth = useAuth()
+
+    const returnTo = useMemo(() => {
+        const param = new URLSearchParams(window.location.search).get("return")
+        return param as "profile" | string
+    }, [])
+
+    const handleApplyButton = useCallback(() => {
+        auth?.set.call(undefined, updateAction<AuthState>({ isApplying: true, isHiring: false }))
+        if (returnTo === "profile") {
+            router.push("/profile")
+        } else {
+            router.push("/onboard/upload/cv")
+        }
+    }, [router, auth?.set, returnTo])
+
+    const handleHireButton = useCallback(() => {
+        auth?.set.call(undefined, updateAction<AuthState>({ isHiring: true, isApplying: false }))
+        if (returnTo === "profile") {
+            router.push("/profile")
+        } else {
+            router.push("/onboard/upload/jd")
+        }
+    }, [router, auth?.set, returnTo])
+
     return (
         <>
-            <H2 rank={1} className="mb-8 text-center">
+            <div className="text-center w-full">
+                <Logo className="w-20 h-20 inline-block" />
+            </div>
+            <H2 rank={1} className="mb-8 mt-4 text-center">
                 Welcome to <br />
                 <span className="font-black text-4xl">OnBoard</span>
             </H2>
@@ -16,13 +48,16 @@ export function IndexPage() {
             </p>
 
             <Option
-                to="/upload/cv/new"
+                onClick={handleApplyButton}
                 className="border-indigo-500 text-indigo-600 bg-indigo-100 "
             >
                 I am looking for a job
             </Option>
 
-            <Option to="/upload/jd/new" className="border-cyan-500 text-cyan-600 bg-cyan-200 bg-opacity-[30%] hover:bg-opacity-60">
+            <Option
+                onClick={handleHireButton}
+                className="border-cyan-500 text-cyan-600 bg-cyan-200 bg-opacity-[30%] hover:bg-opacity-60"
+            >
                 I am hiring
             </Option>
         </>
@@ -30,19 +65,19 @@ export function IndexPage() {
 }
 
 function Option({
-    to,
+    onClick,
     className,
     children,
-}: { to: string; className?: string } & PropsWithChildren) {
+}: { onClick: MouseEventHandler; className?: string } & PropsWithChildren) {
     return (
-        <Link
-            to={to}
+        <div
+            onClick={onClick}
             className={clsx(
-                "block p-6 py-6 rounded-3xl border-2 border-opacity-5 mb-4 bg-opacity-50 transition-colors duration-300 hover:bg-opacity-100",
+                "block p-6 py-6 cursor-pointer rounded-3xl border-2 border-opacity-5 mb-4 bg-opacity-50 transition-colors duration-300 hover:bg-opacity-100",
                 className
             )}
         >
             {children}
-        </Link>
+        </div>
     )
 }

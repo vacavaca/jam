@@ -1,3 +1,11 @@
+## TODO
+
+- resume experience dates to sort
+- resume remote and terms
+- in frontend make everything optional in vacancy and resume to not fail when there is no data
+
+
+
 ### Queries
 
 ```sql

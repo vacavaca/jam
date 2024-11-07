@@ -10,6 +10,7 @@ export function useCandidatesSearch(jdId: string | number) {
 type ResponseCandidate = {
     resumeId: number
     fullName: string
+    summary: string
     position?: string
     totalScore: number
     skillScore?: number
