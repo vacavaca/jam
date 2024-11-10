@@ -12,7 +12,7 @@ services:
     volumes:
       - "/data:/data"
     ports:
-      - "0.0.0.0:9000:9000"
+      - "0.0.0.0:80:9000"
 
   comprehender:
     image: ghcr.io/vacavaca/jam/comprehender:latest
