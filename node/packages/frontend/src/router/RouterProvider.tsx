@@ -46,5 +46,7 @@ export function RouterProvider({ children }: PropsWithChildren) {
         [store, onPush]
     )
 
+    console.log(store.state)
+
     return <context.Provider value={ctx}>{children}</context.Provider>
 }
