@@ -21,6 +21,9 @@ function App() {
                         <Route exact="/">
                             <IndexPage />
                         </Route>
+                        <Route exact="/jam">
+                            <IndexPage />
+                        </Route>
                         <Route exact="/profile">
                             <ProfilePage />
                         </Route>

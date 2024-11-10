@@ -34,7 +34,7 @@ serve(
     Router()
         .use(
             withCORS({
-                allowedOrigins: [],
+                allowedOrigins: ['https://vacavaca.github.io'],
                 allowedHeaders: ['Content-Type'],
                 allowedMethods: ['POST', 'GET', 'DELETE', 'PUT', 'OPTIONS'],
                 isUnknownOriginsAllowed: true,
