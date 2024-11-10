@@ -1,6 +1,6 @@
 import { useRouter } from "@/router/state"
 import { useResume } from "./hooks"
-import { H4, H2, H5, H3 } from "@/ui/heading"
+import { H4, H2, H3 } from "@/ui/heading"
 import { Salary } from "@/ui/Salary"
 import { HeaderPortal } from "@/header/HeaderPortal"
 import { SecondaryButton } from "@/ui/SecondaryButton"
@@ -29,6 +29,8 @@ export function ResumePage() {
         (acc, v) => acc + v.years,
         0
     )
+
+    console.log(resume)
 
     if (!resume) {
         return null
@@ -134,7 +136,7 @@ export function ResumePage() {
                         </>
                     )}
 
-                    {(resume.education?.length ?? 0) > 0 && (
+                    {(resume.position_experience?.length ?? 0) > 0 && (
                         <>
                             <H3 id="experience">
                                 Experience

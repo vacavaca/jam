@@ -1,6 +1,6 @@
 import { useRouter } from "@/router/state"
 import { useVacancy } from "./hooks"
-import { H3, H4 } from "@/ui/heading"
+import { H3 } from "@/ui/heading"
 import { Salary } from "@/ui/Salary"
 import { TimeIcon } from "@/icon/TimeIcon"
 import { BuildingIcon } from "@/icon/BuildingIcon"

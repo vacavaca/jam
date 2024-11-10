@@ -23,11 +23,11 @@ docker build \
     --target package \
     --build-arg "APP_ENV=env.prod" \
     --build-arg "PACKAGE=$PACKAGE" \
-    --tag jam/$PACKAGE:$VERSION \
+    --tag ghcr.io/vacavaca/jam/$PACKAGE:$VERSION \
     .
 
 # APP_ENV=env.prod VERSION=$VERSION docker compose -f compose/dev/docker-compose.yml build $PACKAGE
-# docker tag ghcr.io/vacavaca/stakan/$PACKAGE:$VERSION ghcr.io/vacavaca/stakan/$PACKAGE:latest
-# docker push ghcr.io/vacavaca/stakan/$PACKAGE:$VERSION
-# docker push ghcr.io/vacavaca/stakan/$PACKAGE:latest
+docker tag ghcr.io/vacavaca/jam/$PACKAGE:$VERSION ghcr.io/vacavaca/jam/$PACKAGE:latest
+docker push ghcr.io/vacavaca/jam/$PACKAGE:$VERSION
+docker push ghcr.io/vacavaca/jam/$PACKAGE:latest
 

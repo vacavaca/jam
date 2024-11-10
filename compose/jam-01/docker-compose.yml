@@ -1,0 +1,40 @@
+version: "3.8"
+
+name: jam
+
+services:
+  api:
+    image: ghcr.io/vacavaca/jam/api:latest
+    restart: always
+    networks:
+      app:
+        ipv4_address: 10.43.0.2
+    volumes:
+      - "/data:/data"
+    ports:
+      - "0.0.0.0:9000:9000"
+
+  comprehender:
+    image: ghcr.io/vacavaca/jam/comprehender:latest
+    restart: always
+    networks:
+      app:
+        ipv4_address: 10.43.0.3
+    volumes:
+      - "/data:/data"
+
+  pdftext:
+    image: ghcr.io/vacavaca/jam/pdftext:latest
+    restart: always
+    networks:
+      app:
+        ipv4_address: 10.43.0.4
+    volumes:
+      - "/data:/data"
+
+networks:
+  app:
+    ipam:
+      driver: default
+      config:
+        - subnet: "10.43.0.0/16"

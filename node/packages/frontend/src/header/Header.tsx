@@ -2,8 +2,6 @@ import { SecondaryButton } from "@/ui/SecondaryButton"
 import { BookIcon } from "@/icon/BookIcon"
 import { Link } from "@/router/Link"
 import { Route } from "@/router/Route"
-import { RestartIcon } from "@/icon/RestartIcon"
-import { Logo } from "@/icon/Logo"
 import { OnBoardIcon } from "@/icon/OnBoardIcon"
 
 type Props = {

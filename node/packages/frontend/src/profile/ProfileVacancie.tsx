@@ -5,7 +5,6 @@ import { useState } from "react"
 import { HeaderPortal } from "@/header/HeaderPortal"
 import { H2 } from "@/ui/heading"
 import { Link } from "@/router/Link"
-import { Button } from "@/ui/Button"
 import { UploadIcon } from "@/icon/UploadIcon"
 import { SecondaryButton } from "@/ui/SecondaryButton"
 

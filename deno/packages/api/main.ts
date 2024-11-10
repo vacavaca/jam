@@ -37,9 +37,9 @@ serve(
                 allowedOrigins: [],
                 allowedHeaders: ['Content-Type'],
                 allowedMethods: ['POST', 'GET', 'DELETE', 'PUT', 'OPTIONS'],
-                isUnknownOriginsAllowed:
-                    Deno.env.get("NODE_ENV") === "development",
-                isAllowLocalhost: Deno.env.get("NODE_ENV") === "development",
+                isUnknownOriginsAllowed: true,
+                    // Deno.env.get("NODE_ENV") === "development",
+                isAllowLocalhost: true // Deno.env.get("NODE_ENV") === "development",
             }),
         )
         .use(fileUpload({
