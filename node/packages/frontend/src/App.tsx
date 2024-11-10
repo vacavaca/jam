@@ -19,19 +19,27 @@ function App() {
                 <AuthProvider>
                     <Layout>
                         <Route exact="/">
-                            <IndexPage />
+                            <div className="px-6">
+                                <IndexPage />
+                            </div>
                         </Route>
                         <Route exact="/jam/">
-                            <IndexPage />
+                            <div className="px-6">
+                                <IndexPage />
+                            </div>
                         </Route>
                         <Route exact="/profile">
                             <ProfilePage />
                         </Route>
                         <Route exact="/onboard/upload/jd">
-                            <UploadJDPage />
+                            <div className="px-6">
+                                <UploadJDPage />
+                            </div>
                         </Route>
                         <Route exact="/onboard/upload/cv">
-                            <UploadCVPage />
+                            <div className="px-6">
+                                <UploadCVPage />
+                            </div>
                         </Route>
                         <Route exact="/cv/:id">
                             <ResumePage />
